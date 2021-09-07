@@ -1,33 +1,24 @@
 package com.nikitin.spring_lesson6.repositories;
 
 import com.nikitin.spring_lesson6.entity.Product;
-import org.springframework.stereotype.Component;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Component
+
 @Repository
-public class ProductRepository{
+public interface ProductRepository extends CrudRepository<Product, Long> {
 
-    public List<Product> getProduct(){
-        return new ArrayList<>();
-    }
+    public List<Product> findAll();
 
-    public List<Product> getMinProduct(){
-        return new ArrayList<>();
-    }
 
-    public List<Product> getMaxProduct(){
-        return new ArrayList<>();
-    }
+    public List<Product> findAllByPriceLessThanOderByPrice(int min);
 
-    public List<Product> getMinAndMaxProduct(){
-        return new ArrayList<>();
-    }
 
-    public List<Product> getProductByPage(int pageNum){
-        return new ArrayList<>();
-    }
+    public List<Product> findAllByPriceGreaterThanOrderByPrice(int max);
+
+
+    public List<Product> findAllByPriceBetweenOrderByPrice(int min, int max);
+
 }

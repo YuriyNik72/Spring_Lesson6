@@ -29,26 +29,26 @@ public class ProductController {
     }
 
     @GetMapping(path = "/minPrice")
-    public String showMinProduct(Model uiModel) {
-        uiModel.addAttribute("product",service.getMinProduct());
+    public String showMinProduct(Model uiModel, @RequestParam("min") int min) {
+        uiModel.addAttribute("product",service.getMinProduct(min));
         return "products";
     }
 
     @GetMapping(path = "/maxPrice")
-    public String showMaxPrice(Model uiModel){
-            uiModel.addAttribute("product", service.getMaxProduct());
+    public String showMaxPrice(Model uiModel, @RequestParam("max") int max){
+            uiModel.addAttribute("product", service.getMaxProduct(max));
             return "products";
     }
 
     @GetMapping(path = "/minMaxPrice")
-    public String showMinAndMaxProduct(Model uiModel) {
-        uiModel.addAttribute("product", service.getMinAndMaxProduct());
+    public String showMinAndMaxProduct(Model uiModel, @RequestParam("min") int min, @RequestParam("max") int max) {
+        uiModel.addAttribute("product", service.getMinAndMaxProduct(min,max));
         return "products";
     }
 
     @GetMapping(path = "/page")
     public String showProduct(Model uiModel, @RequestParam("pageNum") int pageNum){
-        uiModel.addAttribute("product", service.getProductByPage(pageNum));
+        uiModel.addAttribute("product", service.getProductByPage(pageNum-1));
         return "products";
     }
 
